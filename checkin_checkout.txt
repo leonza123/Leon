@@ -1,0 +1,14 @@
+if (!form.IsNew())
+{
+	using (SPSite site = new SPSite("http://138.201.167.166:31060/sites/Leon/Learning/"))
+	{
+  		using (SPWeb web = site.OpenWeb())
+  		{
+            		bool updates = web.AllowUnsafeUpdates;
+			web.AllowUnsafeUpdates = true;
+			SPFile f = web.GetFile("Shared%20Documents/" + form.FileName);
+   			f.CheckOut();
+           	 	web.AllowUnsafeUpdates = updates;
+  		}
+	}
+}
