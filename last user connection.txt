@@ -1,0 +1,47 @@
+if (!form.IsNew())
+{	
+	SPFile f = currentWeb.GetFile(form.DocumentID);
+    if (f.CheckOutType == SPFile.SPCheckOutType.None)
+    {
+    	f.CheckOut();
+    }
+}
+
+Form Load:
+
+SPUser user = currentWeb.CurrentUser; 
+SPFile f = currentWeb.GetFile(form.DocumentID);
+if (f.CheckedOutByUser.ToString() == user.ToString())
+{
+    data.resolveNode("TextField2").Value = "Yes";
+    data.resolveNode("MultilineTextField3").Value = "You can use this form!";
+}
+else
+{
+    data.resolveNode("MultilineTextField3").Value = "This form is already used by user: " + f.CheckedOutBy.Name.ToString() + "\nPlease, come here a bit later.";
+    data.resolveNode("TextField2").Value = "No";
+}
+
+Form Submit:
+
+if (!form.IsNew())
+{
+	SPFile f = currentWeb.GetFile(form.DocumentID);
+    f.CheckIn("Checkin_Comment");
+}
+
+Global JS: 
+
+this.getField("TextField2").hidden = true;
+this.getField("MultilineTextField3").readonly = true;
+var status = this.getField("TextField2").value;
+if (status == "No")
+{
+    this.getField("TextField1").readonly = true;
+    this.getField("SubmitButton2").hidden = true;
+}
+else
+{
+    this.getField("TextField1").readonly = false;
+    this.getField("SubmitButton2").hidden = false;
+}
