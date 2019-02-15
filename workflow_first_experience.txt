@@ -1,0 +1,20 @@
+Created workflow in sharepoint 2013 designer
+on log form action - paste text
+
+after form save:
+
+using (SPSite site = new SPSite("http://138.201.167.166:31060/sites/Leon/Learning/")) 
+{    
+    SPFile file = currentWeb.GetFile(form.DocumentID);    
+    SPListItem listItem = file.Item;   
+    SPList list = currentWeb.Lists["Documents"];   
+    SPWorkflowAssociationCollection associationColl = list.WorkflowAssociations;  
+    foreach (SPWorkflowAssociation association in associationColl)
+    {    
+        if (association.Name == "Start_workflow2")
+        {       
+            association.AssociationData = string.Empty;      
+            site.WorkflowManager.StartWorkflow(listItem, association,  association.AssociationData);
+        }    
+    } 
+}
