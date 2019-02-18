@@ -1,0 +1,7 @@
+Submit button action:
+
+var extURL = "mailto:"+this.getField("To").value+";?cc="+this.getField("FromWho").value+"&subject="+this.getField("Subject").value+"&body="+this.getField("Text").value+";"; 
+
+extURL = PDFF.prepareURLWithPlatform(extURL, app.platform); 
+
+this.submitForm({cURL: extURL, cSubmitAs: "PDF"});
