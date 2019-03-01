@@ -1,0 +1,2 @@
+eval("var sysData ="+this.getField("PDFSPSystemData").value);
+this.submitForm({cURL: (sysData.WebURL || "")+"/_layouts/15/PDFShareForms/PDF.aspx", cSubmitAs: "FDF" });  
