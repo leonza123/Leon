@@ -1,0 +1,27 @@
+var user = currentWeb.CurrentUser.Name;
+SPListItemCollection listItems = currentWeb.Lists["Status"].Items;
+SPListItem items = listItems.Add();
+var status = "no";
+
+SPList list = currentWeb.Lists["Status"]; 
+SPListItemCollection itemsEmp = list.GetItems("Title", "zket", "tzxq", "rmdw"); 
+foreach(SPListItem item in itemsEmp) 
+{     
+    Dictionary<string,string> newItem = new Dictionary<string,string>();
+    newItem["User"] = item["Title"].ToString();     
+    newItem["Theme"] = item["zket"].ToString();     
+    newItem["Amount"] = item["tzxq"].ToString();
+    newItem["Stage"] = item["rmdw"].ToString();
+    if (newItem["Theme"] == data.resolveNode("Reg4").Value){
+		status = "yes";
+   }
+}
+
+if (status == "no")
+{
+	items["Title"] = user;
+	items["zket"] = data.resolveNode("Reg4").Value;
+	items["tzxq"] = data.resolveNode("Count1").Value;
+	items["rmdw"] = data.resolveNode("Status1").Value;
+	items.Update();
+}
