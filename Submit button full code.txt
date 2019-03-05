@@ -1,0 +1,9 @@
+if ((this.getField('Count1').value != 0) && (this.getField('TextField4').required == false) && (this.getField('TextField5').required == false) && (this.getField('DropdownField1').value != this.getField('DropdownField2').value) && (this.getField('DropdownField1').value != 4) && (this.getField('DropdownField2').value != 4) && (this.getField('Reg4').required == false) && (this.getField('GoalField1').required == false) && (this.getField('GoalField2').required == false) && (this.getField('Description1').required == false))
+{
+	eval("var sysData ="+this.getField("PDFSPSystemData").value);
+	this.submitForm({cURL: (sysData.WebURL || "")+"/_layouts/15/PDFShareForms/PDF.aspx", cSubmitAs: "FDF" });
+}
+else
+{
+    app.alert({ cMsg: "Please, count required money amount, required for this project!", nIcon: 2 });
+}
