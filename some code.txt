@@ -1,0 +1,46 @@
+else if ((this.getField('DocStat2').value == "Choose status") && (this.getField('Status2').value == "Yes"))
+{
+    this.getField('Comment1').hidden = false;
+    this.getField('SubmitButton1').hidden = false;
+    this.getField('SubmitButton2').hidden = true;
+    this.getField('Reg4').readonly = true;
+    this.getField('GoalField1').readonly = true;
+    this.getField('GoalField2').readonly = true;
+    this.getField('GoalField3').readonly = true;
+    this.getField('GoalField4').readonly = true;
+    this.getField('Description1').readonly = true;
+    this.getField('DropdownField1').readonly = true;
+    this.getField('DropdownField2').readonly = true;
+    this.getField('DropdownField3').readonly = true;
+    this.getField('TextField4').readonly = true;
+    this.getField('TextField5').readonly = true;
+    this.getField('TextField6').readonly = true;
+    this.getField('Comment1').hidden = false;
+    this.getField('SignatureField1').hidden = false;
+    this.getField('Signature1').hidden = false;
+    this.getField('Comment2').hidden = false;
+    this.getField('Comment1').readonly = false;
+    this.getField('SignatureField1').readonly = false;
+}
+
+else if ((this.getField('DocStat2').value == "Choose status") && (this.getField('Status2').value == "No"))
+{
+    this.getField('SubmitButton1').hidden = true;
+    this.getField('SubmitButton2').hidden = true;
+    this.getField('Reg4').readonly = true;
+    this.getField('GoalField1').readonly = true;
+    this.getField('GoalField2').readonly = true;
+    this.getField('GoalField3').readonly = true;
+    this.getField('GoalField4').readonly = true;
+    this.getField('Description1').readonly = true;
+    this.getField('DropdownField1').readonly = true;
+    this.getField('DropdownField2').readonly = true;
+    this.getField('DropdownField3').readonly = true;
+    this.getField('TextField4').readonly = true;
+    this.getField('TextField5').readonly = true;
+    this.getField('TextField6').readonly = true;
+    this.getField('Comment1').hidden = true;
+    this.getField('SignatureField1').hidden = true;
+    this.getField('Signature1').hidden = true;
+    this.getField('Comment2').hidden = true;
+}
