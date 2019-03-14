@@ -1,0 +1,14 @@
+if (this.getField('SignatureField2').signatureValidate() < 2)
+{
+    app.alert({ cMsg: "Please, leave your signature", nIcon: 2 });
+}
+
+else if (this.getField('SignatureField2').signatureValidate() != 4)
+{
+	app.alert({ cMsg: "Your signature is invalid", nIcon: 2 }); 
+}
+
+else if (this.getField('MultilineTextField7').value == "")
+{
+	app.alert({ cMsg: "Please, leave a comment", nIcon: 2 }); 
+}
