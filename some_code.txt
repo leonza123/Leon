@@ -1,0 +1,87 @@
+this.getField('TextField1').readonly = true;
+this.getField('MultilineTextField3').readonly = true;
+this.getField('List1').readonly = true;
+this.getField('List2').readonly = true;
+this.getField('Section1').readonly = true;
+this.getField('Explanation1').readonly = true;
+this.getField('Column1').readonly = true;
+this.getField('Column2').readonly = true;
+this.getField('Column3').readonly = true;
+
+this.getField('MultilineTextField1').hidden = true;
+this.getField('Status').hidden = true;
+this.getField('Status2').hidden = true;
+
+this.getField('MultilineTextField9').value = "";
+this.getField('TextField1').value = "Available provision";
+this.getField('MultilineTextField3').value = "This form allows you to add to the list of available materials and information about them, or to change current information, or to delete existed.";
+this.getField('List1').value = "List of alreay existing materials:";
+this.getField('List2').value = "Information about selected material:";
+this.getField('Section1').value = "Adding new material";
+this.getField('Explanation1').value = "In this section, you can record information about new materials that will be added after submitting this form.";
+this.getField('Column1').value = "New material name:";
+this.getField('Column2').value = "New material price:";
+this.getField('Column3').value = "Firm name:";
+
+eval("var yourdata=" + this.getField("MultilineTextField1").value + ";");
+var dropdown1 = this.getField("DropdownField1"); 
+
+var i;
+for(i = 0;i< yourdata.length; i++)
+{     
+	dropdown1.insertItemAt(yourdata[i]["Name"], yourdata[i]["Name"], i); 
+}
+
+dropdown1.insertItemAt("No value", i)
+
+if (this.getField('Status').value == "No")
+{
+    this.getField('MultilineTextField9').reaonly = true;
+    this.getField('DropdownField1').reaonly = true;
+    this.getField('Row11').reaonly = true;
+    this.getField('Row12').reaonly = true;
+    this.getField('Row13').reaonly = true;
+    this.getField('Row21').reaonly = true;
+    this.getField('Row22').reaonly = true;
+    this.getField('Row23').reaonly = true;
+    this.getField('Row31').reaonly = true;
+    this.getField('Row32').reaonly = true;
+    this.getField('Row33').reaonly = true;
+    app.alert({ cMsg: "We apologize, but this form can be used by the user with elevated powers.", nType: 2 });
+}
+
+else if (this.getField('Status').value == "Yes")
+{
+
+	if (this.getField('Status2').value == "No")
+	{
+    	this.getField('MultilineTextField9').reaonly = true;
+    	this.getField('DropdownField1').reaonly = true;
+    	this.getField('Row11').reaonly = true;
+    	this.getField('Row12').reaonly = true;
+    	this.getField('Row13').reaonly = true;
+    	this.getField('Row21').reaonly = true;
+    	this.getField('Row22').reaonly = true;
+    	this.getField('Row23').reaonly = true;
+    	this.getField('Row31').reaonly = true;
+    	this.getField('Row32').reaonly = true;
+    	this.getField('Row33').reaonly = true;
+    	app.alert({ cMsg: "Someone is already editing the list of available materials. Open this form later to be able to edit it.", nType: 2 });
+
+	}
+
+	else if (this.getField('Status2').value == "Yes")
+	{
+		this.getField('MultilineTextField9').reaonly = false;
+    	this.getField('DropdownField1').reaonly = false;
+    	this.getField('Row11').reaonly = false;
+    	this.getField('Row12').reaonly = false;
+    	this.getField('Row13').reaonly = false;
+    	this.getField('Row21').reaonly = false;
+    	this.getField('Row22').reaonly = false;
+    	this.getField('Row23').reaonly = false;
+    	this.getField('Row31').reaonly = false;
+    	this.getField('Row32').reaonly = false;
+    	this.getField('Row33').reaonly = false;    
+	}
+}
