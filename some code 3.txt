@@ -1,0 +1,28 @@
+SPListItemCollection listItems = currentWeb.Lists["Materials"].Items;
+SPListItem items1 = listItems.Add();
+SPListItem items2 = listItems.Add();
+SPListItem items3 = listItems.Add();
+
+if (data.resolveNode("Row11").Value != "")
+{
+	items1["Title"] = data.resolveNode("Row11").Value;
+	items1["Per_kg"] = data.resolveNode("Row21").Value;
+	items1["p3g4"] = data.resolveNode("Row31").Value;
+	items1.Update();
+}
+
+if (data.resolveNode("Row12").Value != "")
+{
+	items2["Title"] = data.resolveNode("Row12").Value;
+	items2["Per_kg"] = data.resolveNode("Row22").Value;
+	items2["p3g4"] = data.resolveNode("Row32").Value;
+	items2.Update();    
+}
+
+if (data.resolveNode("Row13").Value != "")
+{
+	items3["Title"] = data.resolveNode("Row13").Value;
+	items3["Per_kg"] = data.resolveNode("Row23").Value;
+	items3["p3g4"] = data.resolveNode("Row33").Value;
+	items3.Update();    
+}
