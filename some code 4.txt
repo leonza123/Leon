@@ -1,0 +1,52 @@
+SPList list = currentWeb.Lists["Materials"];
+
+for (var i = 1; i != 4; i++)
+{
+    var k = i + 1;
+	var title = data.resolveNode("DropdownField" + k).Value;
+	var cost = data.resolveNode("Change1" + i).Value;
+	var company = data.resolveNode("Change2" + i).Value;
+
+	SPListItemCollection items = list.GetItems(new SPQuery()
+	{
+    	Query = @"<Where>
+                <Eq>
+                   <FieldRef Name='Title' />
+                   <Value Type='Text'>" + title + @"</Value>
+                </Eq>
+              </Where>"
+	});
+
+    var j = i + 3;
+	if (data.resolveNode("Right" + j).Value != "0")
+	{
+    
+    	if (data.resolveNode("Right" + j).Value == "-1")
+    	{
+        	foreach (SPListItem item in items)
+			{
+    			item["Per_kg"] = cost;
+    			item.Update();
+			}
+    	}
+    
+    	else if (data.resolveNode("Right" + j).Value == "-2")
+    	{
+        	foreach (SPListItem item in items)
+			{
+    			item["p3g4"] = company;
+    			item.Update();
+			}        
+    	}
+    
+    	else
+    	{
+        	foreach (SPListItem item in items)
+			{
+    			item["Per_kg"] = cost;
+    			item["p3g4"] = company;
+    			item.Update();
+			}        
+   		}
+	}
+}
