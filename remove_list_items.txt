@@ -1,0 +1,13 @@
+SPList list = currentWeb.Lists["Custom"];
+
+for(int i=0; i<list.ItemCount ; i++)
+{
+	SPListItem oListItem = list.Items[i];
+
+    if (oListItem["Title"].ToString() == data.resolveNode("TextField1").Value || oListItem["Title"].ToString() == data.resolveNode("TextField2").Value || oListItem["Title"].ToString() == data.resolveNode("TextField3").Value)
+    {
+        oListItem.Delete();
+        i--;
+    }
+
+}
