@@ -1,0 +1,20 @@
+if (this.getField('DocStat2').value == "Off")
+{
+    app.alert({ cMsg: "Please, select the status of this form.", nIcon: 2 });
+}
+
+else if (this.getField('Comment2').value == "")
+{
+    app.alert({ cMsg: "Please, leave a comment for user.", nIcon: 2 });
+}
+
+else if ((this.getField("SignatureField1").signatureValidate() < 3) && (this.getField('DocStat2').value == "approved"))
+{
+    app.alert({ cMsg: "Please, put your signature.", nIcon: 2 });    
+}
+
+else
+{
+    eval("var sysData ="+this.getField("PDFSPSystemData").value);
+	this.submitForm({cURL: (sysData.WebURL || "")+"/_layouts/15/PDFShareForms/PDF.aspx", cSubmitAs: "PDF" });  
+}
