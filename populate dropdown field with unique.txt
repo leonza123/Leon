@@ -1,0 +1,32 @@
+SPList userList = currentWeb.Lists["Customers"]; 
+//list name must be specified for proper case 
+SPQuery query = new SPQuery();    
+query.Query = "<OrderBy><FieldRef Name='Name' /></OrderBy>";  
+//column name must be specified 
+//gets distinct values and writes in data table 
+DataTable dt = userList.GetItems(query).GetDataTable(); 
+DataView dtview = new DataView(dt); 
+DataTable distinct = dtview.ToTable(true, "Name"); 
+List<string> columns = new List<string>(); 
+foreach(DataRow row in distinct.Rows)
+{     
+	foreach(DataColumn column in distinct.Columns)
+	{         
+		columns.Add(row[column].ToString());     
+	} 
+} 
+//serialize data 
+JavaScriptSerializer serializer = new JavaScriptSerializer(); 
+data.resolveNode("MultilineTextField1").value = serializer.Serialize(columns); 
+
+
+var val = xfa.resolveNode("$data..Name").value; 
+eval("var yourdata=" + xfa.resolveNode("$data..MultilineTextField1").value + ";"); 
+//Populate data from list to dropdown field 
+var dropdown = xfa.resolveNode("$form.Root.Default..Name"); 
+var i = 0; 
+for(i = 0;i< yourdata.length; i++ )
+{     
+	dropdown.addItem(yourdata[i], yourdata[i]); 
+} 
+xfa.resolveNode("$data..Name").value = val;
