@@ -1,0 +1,14 @@
+var id = this.rawValue; 
+
+dataList = PdfForms.DataSources.New;
+
+for (var i = 0; i< dataList.length; i++)
+{     
+	if(dataList[i]["Title"] == id)
+   	{     
+		xfa.resolveNode("$data..TextField1").value = dataList[i]["Sector"];   
+        xfa.resolveNode("$data..TextField2").value = dataList[i]["Text"]; 
+        xfa.resolveNode("$data..TextField3").value = dataList[i]["Sector"];   
+        xfa.resolveNode("$data..TextField4").value = dataList[i]["Text"]; 
+    } 
+}
