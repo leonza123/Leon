@@ -1,0 +1,31 @@
+var count = currentWeb.CurrentUser.Groups.Count;
+var status = false;
+
+for (var i = 0; i < count; i++) 
+{     
+	var group = currentWeb.CurrentUser.Groups[i].ToString();   
+	if (group == "Billing department")     
+	{         
+        data.resolveNode("Status").Value = "Yes"; 
+		status = true;  
+        break;
+	} 
+    
+    else
+	{
+		data.resolveNode("Status").Value = "No";
+	}
+}
+
+if (!form.IsNew())
+{
+    SPFile f = currentWeb.GetFile(form.DocumentID);
+    
+    if (status == true)
+    {
+    	if (f.CheckOutType == SPFile.SPCheckOutType.None)
+    	{
+    		f.CheckOut();	
+    	}
+    }
+}
